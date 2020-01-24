@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      height: 100%;
+      text-align: center;
+    }
+
+    section {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    header {
+      font-size: 48px;
+    }
+
+    .direction {
+      border: 4px solid grey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lille {
+      width: 320px;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .lille-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lille-item {
+      width: 320px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 48px;
+    }
+
+    .roulette-btn {
+      outline: 0;
+      border-radius: 10px;
+      background-color: aquamarine;
+      width: 360px;
+      height: 90px;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <section>
+      <header>行く道どっち？</header>
+      <div class="direction">
+        <div class="lille">
+          <div class="lille-items">
+            <div class="lille-item">
+              <span>まっすぐ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="roulette-btn" onclick="roulette()">
+        <span>押す</span>
+      </button>
+      <script type="text/javascript">
+        var directions = new Array(
+          "まっすぐ", "ひだり", "みぎ"
+        );
+
+        isStarted = false;
+        function roulette() {
+          let btn = document.getElementsByClassName("roulette-btn").item(0);
+
+          if (isStarted) {
+            isStarted = false
+            btn.firstElementChild.innerHTML = "押す";
+            clearInterval(id);
+
+          } else {
+            isStarted = true;
+            btn.firstElementChild.innerHTML = "すとっぷ！";
+
+            let count = 0;
+            id = setInterval(() => {
+              let lilleItem = document.getElementsByClassName("lille-item").item(0);
+              lilleItem.firstElementChild.innerHTML = directions[count];
+              count > 1 ? count = 0 : count++;
+            }, 100);
+          }
+        }
+      </script>
+    </section>
+  </div>
+</body>
+
+</html>
